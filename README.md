@@ -588,6 +588,55 @@ certificate on first request — no cert files, no renewal cron. HTTPS is not
 optional here: the session cookie is only marked `secure` when `BEE_SITE_URL`
 is https, and invite links go out as absolute URLs.
 
+### Reaching it
+
+Get the address:
+
+```bash
+gcloud compute instances describe bee --zone=$ZONE \
+  --format='get(networkInterfaces[0].accessConfigs[0].natIP)'
+```
+
+**DNS has to come first — the IP alone will not work.** Caddy serves one site,
+the one named by `BEE_DOMAIN`, and redirects everything to HTTPS. A request to
+the bare IP gets `308 -> https://<ip>/`, and there is no certificate for an IP,
+so the browser stops there. Point an `A` record at the address and use the
+hostname:
+
+```bash
+dig +short bee.example.com          # must return the VM's IP before this works
+```
+
+Caddy then requests a certificate on the first HTTPS request. Watch it happen:
+
+```bash
+gcloud compute ssh bee --zone=$ZONE --command \
+  'sudo docker compose -f /opt/bee/app/docker-compose.yml \
+     -f /opt/bee/app/deploy/docker-compose.prod.yml logs -f caddy'
+```
+
+`certificate obtained successfully` means you are done: open
+`https://bee.example.com`, sign in, and the practice app is there.
+
+If it never gets one, the cause is almost always that Let's Encrypt could not
+reach port 80 for the challenge — check the firewall rule exists **on the right
+network** and that the VM carries the `bee-web` tag.
+
+#### Before DNS exists
+
+To look at it before the record propagates, add a plaintext catch-all to
+`deploy/Caddyfile` and restart Caddy:
+
+```
+http:// {
+	reverse_proxy web:3000
+}
+```
+
+`http://<ip>` then works. **Take it out once DNS is live** — it is a route to
+the app that bypasses TLS, and the session cookie is not marked `secure` over
+it.
+
 ### 4. Get the database there
 
 The repo carries no data, so bring the question bank and accounts across:

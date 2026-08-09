@@ -7,13 +7,11 @@
 {$BEE_DOMAIN} {
 	encode zstd gzip
 
-	# The app trusts X-Forwarded-For for login rate limiting, so the proxy
-	# must set it — otherwise every request looks like it comes from one host
-	# and one person's failed logins would lock out everybody.
-	reverse_proxy web:3000 {
-		header_up X-Forwarded-For {remote_host}
-		header_up X-Real-IP {remote_host}
-	}
+	# Caddy sets X-Forwarded-For itself, which the login rate limiter keys on.
+	# Without that header every request would look like one client and a single
+	# person's failed logins would lock out everybody — so it is load-bearing,
+	# just not something this file has to configure.
+	reverse_proxy web:3000
 
 	header {
 		Strict-Transport-Security "max-age=31536000; includeSubDomains"
