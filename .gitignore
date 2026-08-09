@@ -1,5 +1,7 @@
 # Data volume: the question bank, the raw-page cache, and uploads.
-data/
+data/cache/
+data/inbox/
+data/outbox/
 
 # Python
 .venv/

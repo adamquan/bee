@@ -1,0 +1,70 @@
+{"kind":"session","sessionId":14,"userId":1,"userName":"Student","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"fresh"},"startedAt":"2026-08-01 03:40:12"}
+{"kind":"attempt","attemptId":34,"sessionId":14,"userId":1,"questionId":2341,"buzzClueOrdinal":0,"clueCount":4,"response":"Islamic Republic ofAfghanistan<Young, History>","verdict":"correct","judgedBy":"exact","latencyMs":3300,"createdAt":"2026-08-01 03:40:12"}
+{"kind":"attempt","attemptId":35,"sessionId":14,"userId":1,"questionId":23336,"buzzClueOrdinal":2,"clueCount":6,"response":"definitely not the right answer at all","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":null,"createdAt":"2026-08-01 03:40:12"}
+{"kind":"attempt","attemptId":36,"sessionId":14,"userId":1,"questionId":2408,"buzzClueOrdinal":null,"clueCount":2,"response":null,"verdict":"timeout","judgedBy":"timeout","latencyMs":null,"createdAt":"2026-08-01 03:40:12"}
+{"kind":"session_end","sessionId":14,"endedAt":"2026-08-01 03:40:12"}
+{"kind":"session","sessionId":15,"userId":1,"userName":"Student","format":"mcq","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"fresh"},"startedAt":"2026-08-01 03:40:12"}
+{"kind":"attempt","attemptId":37,"sessionId":15,"userId":1,"questionId":13710,"buzzClueOrdinal":null,"clueCount":null,"response":"B","verdict":"correct","judgedBy":"mcq","latencyMs":null,"createdAt":"2026-08-01 03:40:12"}
+{"kind":"attempt","attemptId":38,"sessionId":15,"userId":1,"questionId":13799,"buzzClueOrdinal":null,"clueCount":null,"response":"A","verdict":"correct","judgedBy":"mcq","latencyMs":null,"createdAt":"2026-08-01 03:40:12"}
+{"kind":"session_end","sessionId":15,"endedAt":"2026-08-01 03:40:12"}
+{"kind":"session","sessionId":16,"userId":2,"userName":"Alex","format":"buzz","origin":"official","difficulty":"middle","filters":{"tags":[],"mode":"mixed"},"startedAt":"2026-08-01 03:55:11"}
+{"kind":"attempt","attemptId":39,"sessionId":16,"userId":2,"questionId":20820,"buzzClueOrdinal":3,"clueCount":4,"response":"ss","verdict":"correct","judgedBy":"llm","latencyMs":34437,"createdAt":"2026-08-01 03:55:49"}
+{"kind":"attempt","attemptId":40,"sessionId":16,"userId":2,"questionId":19043,"buzzClueOrdinal":2,"clueCount":4,"response":"Syria","verdict":"correct","judgedBy":"fuzzy","latencyMs":37200,"createdAt":"2026-08-01 03:56:50"}
+{"kind":"attempt","attemptId":41,"sessionId":16,"userId":2,"questionId":18857,"buzzClueOrdinal":4,"clueCount":5,"response":"Beethoven","verdict":"correct","judgedBy":"llm","latencyMs":79953,"createdAt":"2026-08-01 03:58:27"}
+{"kind":"attempt","attemptId":42,"sessionId":16,"userId":2,"questionId":15501,"buzzClueOrdinal":2,"clueCount":4,"response":"robbespierre","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":72022,"createdAt":"2026-08-01 03:59:42"}
+{"kind":"session","sessionId":17,"userId":2,"userName":"Alex","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"mixed"},"startedAt":"2026-08-01 04:05:15"}
+{"kind":"attempt","attemptId":43,"sessionId":17,"userId":2,"questionId":5004,"buzzClueOrdinal":null,"clueCount":3,"response":null,"verdict":"timeout","judgedBy":"timeout","latencyMs":42675,"createdAt":"2026-08-01 04:05:58"}
+{"kind":"session_end","sessionId":17,"endedAt":"2026-08-01 04:06:43"}
+{"kind":"session","sessionId":18,"userId":2,"userName":"Alex","format":"buzz","origin":"official","difficulty":"middle","filters":{"tags":["World History","Empires","Modern","Asian History","Religions"],"mode":"mixed"},"startedAt":"2026-08-01 04:08:00"}
+{"kind":"attempt","attemptId":44,"sessionId":18,"userId":2,"questionId":13266,"buzzClueOrdinal":2,"clueCount":4,"response":"the triple and taunt","verdict":"correct","judgedBy":"llm","latencyMs":27076,"createdAt":"2026-08-01 04:08:30"}
+{"kind":"attempt","attemptId":45,"sessionId":18,"userId":2,"questionId":15182,"buzzClueOrdinal":2,"clueCount":3,"response":"baseball","verdict":"correct","judgedBy":"exact","latencyMs":32570,"createdAt":"2026-08-01 04:09:13"}
+{"kind":"attempt","attemptId":46,"sessionId":18,"userId":2,"questionId":253,"buzzClueOrdinal":3,"clueCount":4,"response":"the draft","verdict":"correct","judgedBy":"exact","latencyMs":31601,"createdAt":"2026-08-01 04:09:49"}
+{"kind":"attempt","attemptId":47,"sessionId":18,"userId":2,"questionId":4530,"buzzClueOrdinal":2,"clueCount":6,"response":"Iran","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":18850,"createdAt":"2026-08-01 04:10:12"}
+{"kind":"attempt","attemptId":48,"sessionId":18,"userId":2,"questionId":5227,"buzzClueOrdinal":3,"clueCount":4,"response":"I do not know","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":31642,"createdAt":"2026-08-01 04:10:48"}
+{"kind":"attempt","attemptId":49,"sessionId":18,"userId":2,"questionId":27174,"buzzClueOrdinal":2,"clueCount":4,"response":"Austrian","verdict":"correct","judgedBy":"fuzzy","latencyMs":17567,"createdAt":"2026-08-01 04:11:10"}
+{"kind":"attempt","attemptId":50,"sessionId":18,"userId":2,"questionId":13115,"buzzClueOrdinal":1,"clueCount":3,"response":"Mexico","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":11526,"createdAt":"2026-08-01 04:11:24"}
+{"kind":"attempt","attemptId":51,"sessionId":18,"userId":2,"questionId":11690,"buzzClueOrdinal":2,"clueCount":4,"response":"Battle of the Bulge","verdict":"correct","judgedBy":"exact","latencyMs":25642,"createdAt":"2026-08-01 04:11:54"}
+{"kind":"attempt","attemptId":52,"sessionId":18,"userId":2,"questionId":15743,"buzzClueOrdinal":3,"clueCount":4,"response":"James II","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":27215,"createdAt":"2026-08-01 04:12:33"}
+{"kind":"attempt","attemptId":53,"sessionId":18,"userId":2,"questionId":12669,"buzzClueOrdinal":3,"clueCount":4,"response":"Inquisition","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":34170,"createdAt":"2026-08-01 04:13:12"}
+{"kind":"attempt","attemptId":54,"sessionId":18,"userId":2,"questionId":4781,"buzzClueOrdinal":9,"clueCount":10,"response":"I don't know","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":67785,"createdAt":"2026-08-01 04:14:45"}
+{"kind":"attempt","attemptId":55,"sessionId":18,"userId":2,"questionId":23985,"buzzClueOrdinal":0,"clueCount":3,"response":"the King was a game in the pipe I don't know","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":21341,"createdAt":"2026-08-01 04:15:13"}
+{"kind":"attempt","attemptId":56,"sessionId":18,"userId":2,"questionId":11207,"buzzClueOrdinal":1,"clueCount":2,"response":"the country was Italy they ruled the Italian Empire and it was the Kingdom of Italy","verdict":"correct","judgedBy":"fuzzy","latencyMs":28772,"createdAt":"2026-08-01 04:15:47"}
+{"kind":"attempt","attemptId":57,"sessionId":18,"userId":2,"questionId":18704,"buzzClueOrdinal":1,"clueCount":3,"response":"Lady Liberty","verdict":"incorrect","judgedBy":"llm","latencyMs":20491,"createdAt":"2026-08-01 04:16:16"}
+{"kind":"attempt","attemptId":58,"sessionId":18,"userId":2,"questionId":4436,"buzzClueOrdinal":1,"clueCount":2,"response":"blood","verdict":"correct","judgedBy":"exact","latencyMs":16063,"createdAt":"2026-08-01 04:16:56"}
+{"kind":"attempt","attemptId":59,"sessionId":18,"userId":2,"questionId":4438,"buzzClueOrdinal":1,"clueCount":2,"response":"blood","verdict":"correct","judgedBy":"exact","latencyMs":16084,"createdAt":"2026-08-01 04:17:14"}
+{"kind":"attempt","attemptId":60,"sessionId":18,"userId":2,"questionId":18820,"buzzClueOrdinal":2,"clueCount":3,"response":"dinos","verdict":"correct","judgedBy":"llm","latencyMs":30938,"createdAt":"2026-08-01 04:17:49"}
+{"kind":"attempt","attemptId":61,"sessionId":18,"userId":2,"questionId":12415,"buzzClueOrdinal":2,"clueCount":3,"response":"Midway","verdict":"correct","judgedBy":"fuzzy","latencyMs":20665,"createdAt":"2026-08-01 04:18:13"}
+{"kind":"attempt","attemptId":62,"sessionId":18,"userId":2,"questionId":15764,"buzzClueOrdinal":2,"clueCount":3,"response":"the great Irish famine","verdict":"correct","judgedBy":"llm","latencyMs":31021,"createdAt":"2026-08-01 04:18:48"}
+{"kind":"attempt","attemptId":63,"sessionId":18,"userId":2,"questionId":19721,"buzzClueOrdinal":2,"clueCount":3,"response":"Charles Dickens","verdict":"correct","judgedBy":"exact","latencyMs":25006,"createdAt":"2026-08-01 04:19:23"}
+{"kind":"attempt","attemptId":64,"sessionId":18,"userId":2,"questionId":59,"buzzClueOrdinal":3,"clueCount":4,"response":"I don't know","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":26917,"createdAt":"2026-08-01 04:19:52"}
+{"kind":"session_end","sessionId":18,"endedAt":"2026-08-01 04:20:23"}
+{"kind":"session","sessionId":19,"userId":3,"userName":"Adam","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"mixed"},"startedAt":"2026-08-01 04:23:06"}
+{"kind":"session_end","sessionId":19,"endedAt":"2026-08-01 04:26:08"}
+{"kind":"session","sessionId":20,"userId":3,"userName":"Adam","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"mixed"},"startedAt":"2026-08-01 04:26:11"}
+{"kind":"session_end","sessionId":20,"endedAt":"2026-08-01 04:26:37"}
+{"kind":"session","sessionId":21,"userId":3,"userName":"Adam","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"mixed"},"startedAt":"2026-08-01 04:27:44"}
+{"kind":"session_end","sessionId":21,"endedAt":"2026-08-01 04:28:24"}
+{"kind":"session","sessionId":22,"userId":3,"userName":"Adam","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"mixed"},"startedAt":"2026-08-01 04:30:09"}
+{"kind":"session_end","sessionId":22,"endedAt":"2026-08-01 04:30:18"}
+{"kind":"session","sessionId":23,"userId":3,"userName":"Adam","format":"buzz","origin":"both","difficulty":"elementary","filters":{"tags":[],"mode":"mixed"},"startedAt":"2026-08-01 04:36:18"}
+{"kind":"attempt","attemptId":65,"sessionId":23,"userId":3,"questionId":865,"buzzClueOrdinal":3,"clueCount":4,"response":"Christopher Columbus","verdict":"correct","judgedBy":"llm","latencyMs":40139,"createdAt":"2026-08-01 04:37:01"}
+{"kind":"attempt","attemptId":66,"sessionId":23,"userId":3,"questionId":837,"buzzClueOrdinal":2,"clueCount":3,"response":"monaroo Doctrine","verdict":"correct","judgedBy":"llm","latencyMs":25584,"createdAt":"2026-08-01 04:37:42"}
+{"kind":"attempt","attemptId":67,"sessionId":23,"userId":3,"questionId":164,"buzzClueOrdinal":2,"clueCount":4,"response":"Japan","verdict":"correct","judgedBy":"exact","latencyMs":18556,"createdAt":"2026-08-01 04:38:08"}
+{"kind":"session_end","sessionId":23,"endedAt":"2026-08-01 04:38:19"}
+{"kind":"session","sessionId":24,"userId":1,"userName":"Student","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"fresh"},"startedAt":"2026-08-01 04:42:33"}
+{"kind":"attempt","attemptId":68,"sessionId":24,"userId":1,"questionId":19960,"buzzClueOrdinal":null,"clueCount":4,"response":null,"verdict":"timeout","judgedBy":"timeout","latencyMs":null,"createdAt":"2026-08-01 04:42:33"}
+{"kind":"session_end","sessionId":24,"endedAt":"2026-08-01 04:42:33"}
+{"kind":"session","sessionId":25,"userId":3,"userName":"Adam","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"mixed"},"startedAt":"2026-08-01 04:43:20"}
+{"kind":"attempt","attemptId":69,"sessionId":25,"userId":3,"questionId":6995,"buzzClueOrdinal":null,"clueCount":2,"response":null,"verdict":"timeout","judgedBy":"timeout","latencyMs":25064,"createdAt":"2026-08-01 04:43:45"}
+{"kind":"session","sessionId":26,"userId":3,"userName":"Adam","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"mixed"},"startedAt":"2026-08-01 04:46:40"}
+{"kind":"session","sessionId":27,"userId":3,"userName":"Adam","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"mixed"},"startedAt":"2026-08-01 13:04:40"}
+{"kind":"session_end","sessionId":25,"endedAt":"2026-08-01 13:53:51"}
+{"kind":"session","sessionId":28,"userId":3,"userName":"Adam","format":"buzz","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"fresh"},"startedAt":"2026-08-01 14:23:47"}
+{"kind":"attempt","attemptId":70,"sessionId":28,"userId":3,"questionId":17425,"buzzClueOrdinal":0,"clueCount":4,"response":"TheBarber of Seville","verdict":"correct","judgedBy":"exact","latencyMs":3300,"createdAt":"2026-08-01 14:23:47"}
+{"kind":"attempt","attemptId":71,"sessionId":28,"userId":3,"questionId":9939,"buzzClueOrdinal":2,"clueCount":2,"response":"definitely not the right answer at all","verdict":"incorrect","judgedBy":"fuzzy","latencyMs":null,"createdAt":"2026-08-01 14:23:47"}
+{"kind":"attempt","attemptId":72,"sessionId":28,"userId":3,"questionId":14566,"buzzClueOrdinal":null,"clueCount":4,"response":null,"verdict":"timeout","judgedBy":"timeout","latencyMs":null,"createdAt":"2026-08-01 14:23:47"}
+{"kind":"session_end","sessionId":28,"endedAt":"2026-08-01 14:23:47"}
+{"kind":"session","sessionId":29,"userId":3,"userName":"Adam","format":"mcq","origin":"both","difficulty":null,"filters":{"tags":[],"mode":"fresh"},"startedAt":"2026-08-01 14:23:47"}
+{"kind":"attempt","attemptId":73,"sessionId":29,"userId":3,"questionId":1504,"buzzClueOrdinal":null,"clueCount":null,"response":"D","verdict":"correct","judgedBy":"mcq","latencyMs":null,"createdAt":"2026-08-01 14:23:47"}
+{"kind":"attempt","attemptId":74,"sessionId":29,"userId":3,"questionId":13743,"buzzClueOrdinal":null,"clueCount":null,"response":"A","verdict":"correct","judgedBy":"mcq","latencyMs":null,"createdAt":"2026-08-01 14:23:47"}
+{"kind":"session_end","sessionId":29,"endedAt":"2026-08-01 14:23:47"}
