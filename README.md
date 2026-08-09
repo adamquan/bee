@@ -525,21 +525,42 @@ A VM keeps the app exactly as it runs locally.
 
 ### 1. Create the disk and VM
 
+First find the network. Many organisations enforce
+`compute.skipDefaultNetworkCreation`, so the project has no network called
+`default` and `gcloud` fails with *"The referenced network resource cannot be
+found"*:
+
 ```bash
-gcloud compute disks create bee-data --size=20GB --type=pd-balanced --zone=us-central1-a
+gcloud compute networks list
+gcloud compute networks subnets list --filter="region:us-central1"
+```
+
+Use those names below — `default` only if it is genuinely there.
+
+```bash
+NETWORK=default          # or e.g. the one your project actually has
+SUBNET=default
+ZONE=us-central1-a
+
+gcloud compute disks create bee-data --size=20GB --type=pd-balanced --zone=$ZONE
 
 gcloud compute instances create bee \
-  --zone=us-central1-a --machine-type=e2-medium \
+  --zone=$ZONE --machine-type=e2-medium \
   --image-family=debian-12 --image-project=debian-cloud \
   --boot-disk-size=20GB \
   --disk=name=bee-data,device-name=bee-data,mode=rw,auto-delete=no \
-  --tags=http-server,https-server \
+  --network=$NETWORK --subnet=$SUBNET \
+  --tags=bee-web \
   --scopes=cloud-platform \
   --metadata=bee-domain=bee.example.com \
   --metadata-from-file=startup-script=deploy/startup.sh
 
+# --network matters here too: without it the rule lands on `default`, which
+# may not exist. The target tag keeps it scoped to this VM rather than opening
+# a port on everything in the network.
 gcloud compute firewall-rules create bee-web \
-  --allow=tcp:80,tcp:443 --target-tags=http-server,https-server
+  --network=$NETWORK --allow=tcp:80,tcp:443 \
+  --source-ranges=0.0.0.0/0 --target-tags=bee-web
 ```
 
 `e2-medium` (2 vCPU, 4GB) is sized for the Next build, which needs more than a
