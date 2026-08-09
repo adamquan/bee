@@ -1,0 +1,43 @@
+# Production overlay for a single Compute Engine VM.
+#
+#   docker compose -f docker-compose.yml -f deploy/docker-compose.prod.yml up -d
+#
+# Differences from the development file:
+#   - data lives on the attached persistent disk, not the checkout
+#   - the app is not published directly; Caddy terminates TLS in front of it
+#   - Caddy obtains and renews a certificate automatically
+services:
+  web:
+    # Reachable only from the proxy on the compose network. Publishing 3000 as
+    # well would leave a plaintext route past TLS straight to the app.
+    ports: !override []
+    volumes: !override
+      - ${BEE_DATA_DIR:-/opt/bee/data}:/data
+    environment:
+      NODE_ENV: production
+    expose:
+      - "3000"
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      # The hostname the certificate is issued for. Set it in .env.
+      BEE_DOMAIN: ${BEE_DOMAIN:?set BEE_DOMAIN in .env, e.g. bee.example.com}
+    depends_on:
+      - web
+    restart: unless-stopped
+
+  crawler:
+    volumes: !override
+      - ${BEE_DATA_DIR:-/opt/bee/data}:/data
+
+volumes:
+  caddy_data:
+  caddy_config:

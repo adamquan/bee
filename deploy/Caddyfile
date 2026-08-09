@@ -1,0 +1,24 @@
+# Automatic HTTPS. Caddy fetches and renews a Let's Encrypt certificate for
+# BEE_DOMAIN, so nothing here needs a manual cert or a renewal cron.
+#
+# HTTPS is not decoration for this app: the session cookie is only marked
+# `secure` when BEE_SITE_URL is https, and invite links are emailed as
+# absolute URLs.
+{$BEE_DOMAIN} {
+	encode zstd gzip
+
+	# The app trusts X-Forwarded-For for login rate limiting, so the proxy
+	# must set it — otherwise every request looks like it comes from one host
+	# and one person's failed logins would lock out everybody.
+	reverse_proxy web:3000 {
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Real-IP {remote_host}
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+	}
+}

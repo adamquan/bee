@@ -516,6 +516,110 @@ SMTP_HOST=… SMTP_PORT=587 SMTP_USER=… SMTP_PASS=… SMTP_FROM=…
 
 ---
 
+## Deploying to Google Compute Engine
+
+A VM with a persistent disk, not Cloud Run. Cloud Run's filesystem is
+ephemeral — everything written after boot is lost when the instance goes away —
+and its NFS mounts are `no-lock`, which corrupts SQLite rather than erroring.
+A VM keeps the app exactly as it runs locally.
+
+### 1. Create the disk and VM
+
+```bash
+gcloud compute disks create bee-data --size=20GB --type=pd-balanced --zone=us-central1-a
+
+gcloud compute instances create bee \
+  --zone=us-central1-a --machine-type=e2-medium \
+  --image-family=debian-12 --image-project=debian-cloud \
+  --boot-disk-size=20GB \
+  --disk=name=bee-data,device-name=bee-data,mode=rw,auto-delete=no \
+  --tags=http-server,https-server \
+  --scopes=cloud-platform \
+  --metadata=bee-domain=bee.example.com \
+  --metadata-from-file=startup-script=deploy/startup.sh
+
+gcloud compute firewall-rules create bee-web \
+  --allow=tcp:80,tcp:443 --target-tags=http-server,https-server
+```
+
+`e2-medium` (2 vCPU, 4GB) is sized for the Next build, which needs more than a
+`micro` has. `--device-name=bee-data` matters: the startup script looks for
+`/dev/disk/by-id/google-bee-data`.
+
+### 2. Secrets
+
+Nothing sensitive belongs in the repo or the image. The startup script reads
+one secret and writes `.env`:
+
+```bash
+printf 'ANTHROPIC_API_KEY=sk-ant-...\nSMTP_HOST=...\nSMTP_USER=...\nSMTP_PASS=...\nSMTP_FROM=...\n' \
+  | gcloud secrets create bee-env --data-file=-
+gcloud secrets add-iam-policy-binding bee-env \
+  --member="serviceAccount:$(gcloud compute instances describe bee --zone=us-central1-a \
+      --format='value(serviceAccounts[0].email)')" \
+  --role=roles/secretmanager.secretAccessor
+```
+
+### 3. DNS, then TLS happens by itself
+
+Point an A record at the VM's external IP. Caddy obtains and renews the
+certificate on first request — no cert files, no renewal cron. HTTPS is not
+optional here: the session cookie is only marked `secure` when `BEE_SITE_URL`
+is https, and invite links go out as absolute URLs.
+
+### 4. Get the database there
+
+The repo carries no data, so bring the question bank and accounts across:
+
+```bash
+docker compose down                                   # so nothing is mid-write
+gcloud compute scp data/bee.db data/history.jsonl bee:/tmp/ --zone=us-central1-a
+gcloud compute ssh bee --zone=us-central1-a --command \
+  'sudo mv /tmp/bee.db /tmp/history.jsonl /opt/bee/data/ && sudo chown 10001:10001 /opt/bee/data/*'
+```
+
+Or start empty and bootstrap: `crawler admin --email you@example.com`, then run
+a crawl on the VM. That is ~45 minutes of fetching plus the enrichment cost.
+
+### 5. Running the crawler there
+
+Same commands, on the VM:
+
+```bash
+gcloud compute ssh bee --zone=us-central1-a
+cd /opt/bee/app
+sudo docker compose -f docker-compose.yml -f deploy/docker-compose.prod.yml \
+  run --rm crawler stats
+```
+
+It still asks for admin credentials. For unattended jobs pass
+`BEE_ADMIN_EMAIL` / `BEE_ADMIN_PASSWORD`; a nightly `generate --jobs` fits a
+systemd timer or a cron entry calling the same command.
+
+The crawler is a batch job and the web app is a service — they share the disk,
+never run at once against the same database from a host *and* a container, and
+`docker compose run` is container-to-container, so it is safe alongside `web`.
+
+### Updating
+
+`git pull` and rebuild; the startup script does both on reboot:
+
+```bash
+cd /opt/bee/app && sudo git pull && \
+  sudo docker compose -f docker-compose.yml -f deploy/docker-compose.prod.yml up -d --build
+```
+
+### What the overlay changes
+
+`deploy/docker-compose.prod.yml` moves the data volume to `/opt/bee/data`,
+stops the app publishing port 3000 (Caddy reaches it over the compose network,
+so there is no plaintext route past TLS), and adds the proxy. Caddy forwards
+`X-Forwarded-For`, which the login rate limiter keys on — without it every
+request looks like one client and one person's failed logins would lock out
+everybody.
+
+---
+
 ## Local development
 
 ```bash
