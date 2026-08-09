@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ theme --
+   One accent (amber, the "bee" cue) against a deep slate ground. Verdict
+   colors are the only other hues, so correct/incorrect always read instantly.
+*/
+@theme {
+  --color-ink-950: #080b14;
+  --color-ink-900: #0d1220;
+  --color-ink-850: #131a2c;
+  --color-ink-800: #1a2338;
+  --color-ink-700: #273249;
+  --color-ink-600: #3a4763;
+  --color-ink-400: #7c8aa8;
+  --color-ink-300: #a4b0c8;
+  --color-ink-100: #e6ebf5;
+
+  --color-honey-300: #fcd980;
+  --color-honey-400: #f9c74f;
+  --color-honey-500: #eeab24;
+  --color-honey-600: #c9860e;
+
+  --color-good-400: #4ade80;
+  --color-good-600: #16a34a;
+  --color-bad-400: #f87171;
+  --color-bad-600: #dc2626;
+  --color-warn-400: #fbbf24;
+
+  --font-display: ui-serif, "Iowan Old Style", Georgia, serif;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background:
+    radial-gradient(1100px 600px at 15% -10%, rgba(238, 171, 36, 0.09), transparent 60%),
+    radial-gradient(900px 500px at 95% 0%, rgba(58, 71, 99, 0.35), transparent 55%),
+    var(--color-ink-950);
+  color: var(--color-ink-100);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* `btn` is a @utility rather than a component class so the variants below can
+   @apply it — Tailwind v4 only allows @apply of utilities. */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: --spacing(2);
+  border-radius: var(--radius-xl);
+  padding-inline: --spacing(4);
+  padding-block: --spacing(2.5);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm--line-height);
+  font-weight: 500;
+  transition-property: color, background-color, border-color;
+  transition-duration: 150ms;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-ink-700/70 bg-ink-900/70 backdrop-blur-sm;
+  }
+
+  .btn-primary,
+  .btn-ghost,
+  .btn-quiet {
+    @apply btn focus-visible:outline-2 focus-visible:outline-offset-2
+           focus-visible:outline-honey-400
+           disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-primary {
+    @apply bg-honey-400 text-ink-950 hover:bg-honey-300;
+  }
+  .btn-ghost {
+    @apply border border-ink-700 text-ink-100 hover:bg-ink-800;
+  }
+  .btn-quiet {
+    @apply text-ink-300 hover:bg-ink-800 hover:text-ink-100;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-ink-700
+           bg-ink-850 px-2.5 py-1 text-xs text-ink-300;
+  }
+  .chip-on {
+    @apply border-honey-500/60 bg-honey-500/15 text-honey-300;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-ink-700 bg-ink-900 px-3.5 py-2.5
+           text-ink-100 placeholder:text-ink-400
+           focus:border-honey-500 focus:outline-none;
+  }
+
+  .label {
+    @apply mb-2 block text-xs font-semibold uppercase tracking-wider text-ink-400;
+  }
+}
+
+/* Clues fade in as they are revealed, so the student's eye lands on the new
+   one without the layout jumping. */
+@keyframes clue-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.clue-in {
+  animation: clue-in 340ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clue-in {
+    animation: none;
+  }
+}

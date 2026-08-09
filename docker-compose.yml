@@ -1,0 +1,44 @@
+services:
+  # Long-running practice app: http://localhost:3000
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    ports:
+      - "${BEE_PORT:-3000}:3000"
+    volumes:
+      - ./data:/data
+    environment:
+      # Optional. Without it the app still runs official questions and grades
+      # answers offline; generation and moderator-style judging are disabled.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      BEE_MODEL: ${BEE_MODEL:-claude-opus-5}
+      # Absolute base URL used in invite links sent by email.
+      BEE_SITE_URL: ${BEE_SITE_URL:-http://localhost:3000}
+      # Optional SMTP. Without it, approving an account writes the invite to
+      # data/outbox/ and shows the link in the admin page instead.
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_FROM: ${SMTP_FROM:-}
+    restart: unless-stopped
+
+  # Batch job. Nothing runs until you invoke a subcommand:
+  #   docker compose run --rm crawler build
+  #   docker compose run --rm crawler crawl --dry-run
+  #   docker compose run --rm crawler generate --tag "World Wars" --count 20
+  #   docker compose run --rm crawler ingest --inbox
+  #   docker compose run --rm crawler stats
+  crawler:
+    build:
+      context: .
+      dockerfile: crawler/Dockerfile
+    volumes:
+      - ./data:/data
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      BEE_MODEL: ${BEE_MODEL:-claude-opus-5}
+      BEE_CRAWL_DELAY: ${BEE_CRAWL_DELAY:-10}
+      BEE_MAX_PAGES: ${BEE_MAX_PAGES:-600}
+    profiles: ["tools"]

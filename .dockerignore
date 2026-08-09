@@ -1,0 +1,13 @@
+**/node_modules
+**/.next
+**/.venv
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+data/
+# ...except the snapshot baked into the image by `crawler seed`.
+!data/seed.db
+.git
+.gitignore
+*.md
+!README.md

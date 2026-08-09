@@ -1,0 +1,21 @@
+# Data volume: the question bank, the raw-page cache, and uploads.
+data/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# Node / Next
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+
+# Local env
+.env
+.env.local
+
+.DS_Store
